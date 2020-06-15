@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.mybatis.mapper.TreeNodeMapper">
+
+    <resultMap id="BaseResultMap" type="entity.TreeNode">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="label" jdbcType="VARCHAR" property="label" />
+        <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+        <collection property="children" ofType="entity.TreeNode"></collection>
+    </resultMap>
+
+    <insert id="insert" parameterType="entity.TreeNode">
+      <selectKey keyProperty="id" resultType="String" order="BEFORE">select replace(uuid(),'-','') from dual</selectKey>
+        insert into tree_node (id,label,parent_id) values (#{id,jdbcType=VARCHAR},#{label,jdbcType=VARCHAR},#{parentId,jdbcType=VARCHAR});
+    </insert>
+
+    <select id="queryChildren" resultMap="BaseResultMap">
+        select id,label,parent_id from tree_node
+        where parent_id = #{parentId}
+    </select>
+
+    <delete id="deleteNode" parameterType="entity.TreeNode">
+      delete from tree_node where id = #{id}
+    </delete>
+
+</mapper>

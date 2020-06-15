@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.mybatis.mapper.HoneyMapper">
+
+    <resultMap id="BaseResultMap" type="entity.Honey">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="userName" />
+        <result column="price" jdbcType="VARCHAR" property="age" />
+        <result column="address" jdbcType="VARCHAR" property="age" />
+        <result column="info" jdbcType="VARCHAR" property="age" />
+        <result column="contact" jdbcType="VARCHAR" property="contact" />
+    </resultMap>
+
+    <select id="queryOne" resultType="entity.Honey">
+        select * from honey where id = #{id}
+    </select>
+
+    <select id="queryAll" resultType="entity.Honey">
+        select * from honey
+    </select>
+
+    <insert id="insert">
+    insert into honey(id,name,price,address,info)
+    values(#{id},#{name},#{price},#{address},#{info})
+    </insert>
+
+</mapper>

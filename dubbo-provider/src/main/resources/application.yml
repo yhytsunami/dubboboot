@@ -1,0 +1,17 @@
+#spring:
+#  datasource:
+#    username: ${jdbc.user}
+#    password: ${jdbc.pwd}
+#    url: ${jdbc.url}
+#    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapping/*_mapper.xml
+  type-aliases-package: boot.mybatis.entity
+
+#showSql
+logging:
+  level:
+    com:
+      example:
+        mapper : debug
